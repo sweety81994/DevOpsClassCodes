@@ -1,0 +1,7 @@
+- hosts: webserver
+  become: true
+  tasks:
+  - name: Install docker.
+    yum: name=docker-ce state=present
+  - name: Start docker service
+    service: name=docker state=started
