@@ -1,7 +1,8 @@
 - hosts: webserver
   become: true
+  become_user: root
   tasks:
-  - name: Install docker.
-    yum: name=docker-ce state=present
-  - name: Start docker service
+  - name: install docker
+    yum: name=docker state=present
+  - name: start docker
     service: name=docker state=started
