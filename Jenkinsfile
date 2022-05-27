@@ -48,7 +48,7 @@ pipeline{
               
           }
           stage('Package'){
-		  agent {label 'linux_slave'}
+		 
 		  
               steps{
 		  git 'https://github.com/sweety81994/DevOpsClassCodes.git'
@@ -64,7 +64,7 @@ pipeline{
 node {
 	def application = "Addressbook"
 	def dockerhubaccountid = "kavitha08"
-	agent {label 'linux_slave'}
+	
 	stage('Clone repository') {
 		checkout scm
 	}
