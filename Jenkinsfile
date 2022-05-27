@@ -62,7 +62,7 @@ pipeline{
 
 
 node {
-	def application = "kavitha08/addressbook"
+	def application = "addressbook"
 	def dockerhubaccountid = "kavitha08"
 	
 	stage('Clone repository') {
