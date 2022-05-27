@@ -48,9 +48,10 @@ pipeline{
               
           }
           stage('Package'){
+		  agent {label 'linux_slave'}
 		  
               steps{
-		  
+		  git 'https://github.com/sweety81994/DevOpsClassCodes.git'
                   sh 'mvn package'
               }
           }
