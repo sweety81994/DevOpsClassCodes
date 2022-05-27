@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: addr
+  labels:
+    app: addr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: addr
+  template:
+    metadata:
+      name: addrpod
+      labels:
+        app: addr
+    spec:
+      containers:
+        - name: addr
+          image: kavitha08/addressbook:14
+          resources:
+            limits:
+              cpu: 10m
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: addr-svc
+spec:
+  type: ClusterIP  ## this is default if we do not type in service definition
+  selector:
+    app: addr
+  ports:
+   - protocol: TCP
+     port: 80
+     targetPort: 80
+
+---
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: addr-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: addr
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 5
