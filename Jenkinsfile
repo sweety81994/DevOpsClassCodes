@@ -65,8 +65,8 @@ node {
 	def application = "addressbook"
 	def dockerhubaccountid = "kavitha08"
 	
-	stage('Clone repository') {
-		checkout scm
+	stage('Install Docker & Start Docker') {
+		echo "Docker is already updated"
 	}
 
 	stage('Build image') {
